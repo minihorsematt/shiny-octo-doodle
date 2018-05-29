@@ -1,0 +1,19 @@
+{
+  "name": "shiny-octo-doodle",
+  "version": "1.0.0",
+  "description": "Lambda function for inserting leads to Drips. Triggered via S3.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minihorsematt/shiny-octo-doodle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minihorsematt/shiny-octo-doodle/issues"
+  },
+  "homepage": "https://github.com/minihorsematt/shiny-octo-doodle#readme"
+}
