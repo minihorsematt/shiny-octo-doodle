@@ -2,23 +2,36 @@ const aws = require( 'aws-sdk' );
 
 class S3 {
   constructor() {
-    this.s3Bucket = new AWS.S3({
-      params: { Bucket: 'drips-leads' }
-    });
+    this.s3 = new AWS.S3();
   }
 
-  getObject( key ) {
+  getObject( bucket, key ) {
     return new Promise( ( resolve, reject ) => {
-      var params = { Key: key };
+      var params = {
+        Bucket: bucket,
+        Key: key
+      };
 
-      this.s3Bucket.getObject( params, ( err, data ) => {
+      this.s3.getObject( params, ( err, data ) => {
         err ? reject( err ) : resolve( data );
       });
     });
   }
 
-  upload( key, body ) {
-    return new Promise( ( resolve, reject ) => {} );
+  upload( bucket, key, body ) {
+    return new Promise( ( resolve, reject ) => {
+      var params = {
+        Bucket: bucket,
+        Key: key,
+        Body: JSON.stringify( body ),
+        ContentType: 'text/json',
+        ACL: 'public-read'
+      };
+
+      this.s3Bucket.upload( params, ( err, data ) => {
+        err ? reject( err ) : resolve( data );
+      });
+    });
   }
 }
 
