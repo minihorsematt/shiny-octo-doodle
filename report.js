@@ -14,7 +14,7 @@ class Report extends EventEmitter {
   }
 
   s3Upload() {
-    var processTime = Math.round( ( Date.now() - this.processStart ) / 1000 );
+    var processTime = Math.round( ( Date.now() - this.processStart ) / 1000 / 60 );
     var body = {
       success: this.success,
       fail: this.fail,
