@@ -1,7 +1,7 @@
 const EventEmitter = require( 'events' );
+const uuid = require( 'uuid/v4' );
 
 const s3 = require( './s3' );
-const uuid = require( 'uuid/v4' );
 
 class Report extends EventEmitter {
   constructor() {

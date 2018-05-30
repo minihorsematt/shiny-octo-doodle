@@ -13,7 +13,6 @@ class Drips {
   parse() {
     return new Promise( ( resolve, reject ) => {
       csv.parse( this.leads, { columns: true }, ( err, leads ) => {
-        console.log( 'parse', err, leads );
         this.error = report.error = err;
         this.leads = leads;
         err ? reject() : resolve();
