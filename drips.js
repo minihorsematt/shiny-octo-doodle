@@ -1,42 +1,53 @@
 const csv = require( 'csv' );
 const uuid = require( 'uuid' );
+const request = require( 'request' );
 
 const report = require( './report' );
 
 class Drips {
-  constructor( data ) {
+  constructor( leads ) {
+    this.leads = leads;
     this.url = 'https://api.drips.com/Lead/Insert/' + process.env.DRIPS_SOURCE_TOKEN;
+  }
 
-    csv.parse( data, function( err, data ) {
-      this.error = report.error = err;
-      this.data = data;
+  parse() {
+    return new Promise( ( resolve, reject ) => {
+      csv.parse( this.leads, { columns: true }, ( err, leads ) => {
+        console.log( 'parse', err, leads );
+        this.error = report.error = err;
+        this.leads = leads;
+        err ? reject() : resolve();
+      });
     });
   }
 
   insert() {
-    console.log( 'Drips:insert:data', this.data );
-    if ( !data.length ) return this._done();
-    var lead = data.shift();
+    return new Promise( ( resolve, reject ) => {
+      this._shiftLead( this.leads.shift(), resolve );
+    });
+  }
+
+  _shiftLead( lead, resolve ) {
+    if ( !lead ) return resolve();
     var opts = {
       url: this.url,
       form: {
         LeadId: uuid(),
-        Phone: lead[ 'Public Leads Phone' ],
-        Email: lead[ 'Public Leads Email' ],
-        FirstName: lead[ 'Public Leads First Name' ]
+        Phone: lead[ 'phone' ],
+        Email: lead[ 'email' ],
+        FirstName: lead[ 'first_name' ],
+        LastName: lead[ 'last_name' ]
       }
     };
 
     request.post( opts, ( err, response, body ) => {
-      console.log( 'Drips:insert:body', body );
-      report.i++;
-      err ? report.fail++ : report.success++;
-      this.insert();
+      body = body || {};
+      ++report.i;
+      err || !( JSON.parse( body ).Success )
+        ? report.fail.push( report.i )
+        : ++report.success;
+      this._shiftLead( this.leads.shift(), resolve );
     });
-  }
-
-  _done() {
-    report.s3Upload();
   }
 }
 

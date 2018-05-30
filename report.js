@@ -1,25 +1,32 @@
+const EventEmitter = require( 'events' );
+
 const s3 = require( './s3' );
 const uuid = require( 'uuid/v4' );
 
 class Report extends EventEmitter {
   constructor() {
+    super();
+    this.processStart = Date.now();
     this.success = 0;
-    this.fail = 0;
+    this.fail = [];
     this.error = null;
     this.i = 0;
   }
 
   s3Upload() {
-    s3.upload(
-      'drips-lead-insert-reports',
-      uuid(),
-      {
-        success: this.success,
-        fail: this.fail,
-        error: this.error
-      }
-    ).then( () => { console.log( 'Nice. ', 1/0 ); this.emit( 'done' ); } )
-    .catch( () => { console.log( 'Well, shit. ', 0/0 ); this.emit( 'done' ); } );
+    var processTime = Math.round( ( Date.now() - this.processStart ) / 1000 );
+    var body = {
+      success: this.success,
+      fail: this.fail,
+      error: this.error,
+      i: this.i,
+      process_time: ( processTime < 1 ? '<1' : processTime ) + 'm'
+    };
+
+    return s3.upload( 'drips-lead-insert-reports', uuid(), body )
+      .then( () => { console.log( 'drips-lead-insert-reports' ); } )
+      .then( () => { console.log( 'Nice.', 1/0 ); } )
+      .catch( ( err ) => { console.log( 'Well, shit.', err, 0/0 ); } );
   }
 }
 

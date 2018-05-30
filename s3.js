@@ -1,8 +1,8 @@
-const aws = require( 'aws-sdk' );
+const AWS = require( 'aws-sdk' );
 
 class S3 {
   constructor() {
-    this.s3 = new AWS.S3();
+    this.service = new AWS.S3();
   }
 
   getObject( bucket, key ) {
@@ -12,8 +12,8 @@ class S3 {
         Key: key
       };
 
-      this.s3.getObject( params, ( err, data ) => {
-        err ? reject( err ) : resolve( data );
+      this.service.getObject( params, ( err, data ) => {
+        err ? reject( null ) : resolve( data.Body.toString( 'utf8' ) );
       });
     });
   }
@@ -28,7 +28,7 @@ class S3 {
         ACL: 'public-read'
       };
 
-      this.s3Bucket.upload( params, ( err, data ) => {
+      this.service.upload( params, ( err, data ) => {
         err ? reject( err ) : resolve( data );
       });
     });

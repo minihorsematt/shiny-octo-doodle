@@ -6,15 +6,22 @@ exports.handler = async ( event, context, callback ) => {
   const record = event.Records[ 0 ];
   const key = decodeURIComponent( record.s3.object.key.replace( /\+/g, ' ' ) );
 
-  report.on( 'done', callback );
+  var leads = await s3.getObject( 'drips-leads', key );
+  if ( !leads ) {
+    report.error = 'S3:getObject';
+    await report.s3Upload();
+    return false;
+  }
 
-  s3.getObject( 'drips-leads', key )
-    .then( ( data ) => {
-      var drips = new Drips( data );
-      drips.error ? report.s3Upload() : drips.insert();
-    })
-    .catch( ( err ) => {
-      report.error = err;
-      report.s3Upload();
-    });
+  var drips = new Drips( leads );
+  await drips.parse();
+  if ( drips.error ) {
+    report.error = 'Drips:csvParse';
+    await report.s3Upload();
+    return false;
+  }
+
+  await drips.insert();
+  await report.s3Upload();
+  return true;
 };
