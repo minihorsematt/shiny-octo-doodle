@@ -34,11 +34,14 @@ The only required attribute is `phone`. Any header/column that doesn't match **e
 
 Want it formatted? [Trainers hate him](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
+#### Notes
+The report name will be identical to the upload that created it.
+
 ![dollar](https://user-images.githubusercontent.com/39743483/40743060-58b8c15c-6405-11e8-9c26-beff74b9edb2.gif)
 
 *Nerd shit below this line.*
 
----------------------------------
+----------------------------
 
 ### Contribute
 
