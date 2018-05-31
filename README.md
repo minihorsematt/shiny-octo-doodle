@@ -36,9 +36,9 @@ Want it formatted? [Trainers hate him](https://chrome.google.com/webstore/detail
 
 ![dollar](https://user-images.githubusercontent.com/39743483/40743060-58b8c15c-6405-11e8-9c26-beff74b9edb2.gif)
 
-*Real nerd shit below this line*
+*Real nerd shit below this line.*
 
-----------------------------
+---------------------------------
 
 ### Contribute
 
@@ -58,6 +58,8 @@ AWS Lambda requires a compressed directory.
 cd path/to/shiny-octo-doodle
 zip -r ../shiny-octo-doodle.zip *
 ```
+
+Upload the zip [here](https://us-west-1.console.aws.amazon.com/lambda/home?region=us-west-1#/functions/dripsLeadInsert?tab=graph).
 
 ### QA
 
