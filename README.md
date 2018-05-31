@@ -12,7 +12,7 @@ To submit leads to Drips, a properly formatted `CSV` file must be uploaded to [t
 
 *An example CSV can be found right [here](https://github.com/minihorsematt/shiny-octo-doodle/blob/master/drips-leads-example.csv), in this very repo.*
 
-Just drag and drop that bitch into the S3 bucket. Don't worry about permissions or properties on the file. The defaults will do.
+Just drag and drop that bitch into the aforementioned S3 bucket. Don't worry about permissions or properties on the file. The defaults will do.
 
 > Next, next, next, upload.
 
@@ -35,7 +35,7 @@ The only required attribute is `phone`. Any header/column that doesn't match **e
 Want it formatted? [Trainers hate him](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
 #### Notes
-The report name will be identical to the upload file that created it. If a report isn't created- Well, shit. Check the [logs](https://us-west-1.console.aws.amazon.com/cloudwatch/home?region=us-west-1#logStream:group=/aws/lambda/dripsLeadInsert;streamFilter=typeLogStreamPrefix) or contact [this](https://github.com/juniorSE7EN) guy.
+The report name will be identical to the upload file that created it. If a report isn't created- Well, shit. Something probably went wrong. Check the [logs](https://us-west-1.console.aws.amazon.com/cloudwatch/home?region=us-west-1#logStream:group=/aws/lambda/dripsLeadInsert;streamFilter=typeLogStreamPrefix) or contact [this](https://github.com/juniorSE7EN) guy.
 
 ![dollar](https://user-images.githubusercontent.com/39743483/40743060-58b8c15c-6405-11e8-9c26-beff74b9edb2.gif)
 
@@ -68,7 +68,7 @@ Upload the zip [here](https://us-west-1.console.aws.amazon.com/lambda/home?regio
 
 ### QA
 
-**Why aren't the AWS S3 bucket links working? Where do I drag and drop?**
+**Why aren't the AWS S3 bucket links working? I can't drag and drop.**
 
 Matt- Are you signed in to [AWS](https://aws.amazon.com/)?
 
