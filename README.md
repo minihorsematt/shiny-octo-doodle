@@ -4,7 +4,7 @@
 
 ### Drips Lead Insert Process
 
-To submit leads to Drips, a properly formatted `CSV` file must be uploaded to [this](https://s3.console.aws.amazon.com/s3/buckets/drips-leads/?region=us-east-2&tab=overview) S3 bucket. The name of the file is irrelevant, but the file type (CSV) and headers must match **exactly**.
+To submit leads to Drips, a properly formatted `CSV` file must be uploaded to [this](https://s3.console.aws.amazon.com/s3/buckets/drips-leads/?region=us-east-2&tab=overview) S3 bucket. The name of the file is irrelevant, but the file type must be `CSV` and headers must match **exactly** with the following:
   * `phone`
   * `email`
   * `first_name`
@@ -12,7 +12,7 @@ To submit leads to Drips, a properly formatted `CSV` file must be uploaded to [t
 
 *An example CSV can be found right [here](https://github.com/minihorsematt/shiny-octo-doodle/blob/master/drips-leads-example.csv), in this very repo.*
 
-Just drag and drop that bitch. Don't worry about permissions or properties on the file. The defaults will do.
+Just drag and drop that bitch into the S3 bucket. Don't worry about permissions or properties on the file. The defaults will do.
 
 > Next, next, next, upload.
 
@@ -35,3 +35,44 @@ The only required attribute is `phone`. Any header/column that doesn't match **e
 Want it formatted? [Trainers hate him](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
 ![dollar](https://user-images.githubusercontent.com/39743483/40743060-58b8c15c-6405-11e8-9c26-beff74b9edb2.gif)
+
+*Real nerd shit below this line*
+
+----------------------------
+
+### Contribute
+
+With Git and Node installed, clone this repo and install dependencies.
+
+```bash
+git clone https://github.com/minihorsematt/shiny-octo-doodle.git
+cd shiny-octo-doodle
+npm install
+```
+
+### Manual Deploy
+
+AWS Lambda requires a compressed directory.
+
+```bash
+cd path/to/shiny-octo-doodle
+zip -r ../shiny-octo-doodle.zip *
+```
+
+### QA
+
+**Why aren't the AWS S3 bucket links working? Where do I drag and drop?**
+
+Matt- You aren't signed in to AWS. Most likely.
+
+**The top contributor on this project is cute, can I get his number?**
+
+Is this Matt?
+
+**Sub for sub?**
+
+Sure. You first.
+
+**Where we dropping, boys?**
+
+![tilted](https://user-images.githubusercontent.com/39743483/40795638-855cc5b6-64b7-11e8-83a3-578a90383745.jpg)
