@@ -6,6 +6,8 @@ exports.handler = async ( event, context, callback ) => {
   const record = event.Records[ 0 ];
   const key = decodeURIComponent( record.s3.object.key.replace( /\+/g, ' ' ) );
 
+  report.key = key;
+
   var leads = await s3.getObject( 'drips-leads', key );
   if ( !leads ) {
     report.error = 'S3:getObject';

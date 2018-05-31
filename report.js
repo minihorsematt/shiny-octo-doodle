@@ -23,7 +23,7 @@ class Report extends EventEmitter {
       process_time: ( processTime < 1 ? '<1' : processTime ) + 'm'
     };
 
-    return s3.upload( 'drips-lead-insert-reports', uuid(), body )
+    return s3.upload( 'drips-lead-insert-reports', this.key || uuid(), body )
       .then( () => { console.log( 'drips-lead-insert-reports' ); } )
       .then( () => { console.log( 'Nice.', 1/0 ); } )
       .catch( ( err ) => { console.log( 'Well, shit.', err, 0/0 ); } );
