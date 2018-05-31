@@ -35,7 +35,7 @@ The only required attribute is `phone`. Any header/column that doesn't match **e
 Want it formatted? [Trainers hate him](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
 #### Notes
-The report name will be identical to the upload that created it.
+The report name will be identical to the upload file that created it. If a report isn't created- Well, shit. Check the [logs](https://us-west-1.console.aws.amazon.com/cloudwatch/home?region=us-west-1#logStream:group=/aws/lambda/dripsLeadInsert;streamFilter=typeLogStreamPrefix) or contact [this](https://github.com/juniorSE7EN) guy.
 
 ![dollar](https://user-images.githubusercontent.com/39743483/40743060-58b8c15c-6405-11e8-9c26-beff74b9edb2.gif)
 
@@ -64,11 +64,13 @@ zip -r ../shiny-octo-doodle.zip *
 
 Upload the zip [here](https://us-west-1.console.aws.amazon.com/lambda/home?region=us-west-1#/functions/dripsLeadInsert?tab=graph).
 
+### [Logs](https://us-west-1.console.aws.amazon.com/cloudwatch/home?region=us-west-1#logStream:group=/aws/lambda/dripsLeadInsert;streamFilter=typeLogStreamPrefix)
+
 ### QA
 
 **Why aren't the AWS S3 bucket links working? Where do I drag and drop?**
 
-Matt- You aren't signed in to AWS. [My guess](https://github.com/minihorsematt/shiny-octo-doodle/blob/master/README.md#drips-lead-insert-process).
+Matt- Are you signed in to [AWS](https://aws.amazon.com/)?
 
 **The top contributor on this project is cute, can I get his number?**
 
