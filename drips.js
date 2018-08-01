@@ -7,7 +7,7 @@ const report = require( './report' );
 class Drips {
   constructor( leads ) {
     this.leads = leads;
-    this.url = 'https://api.drips.com/Lead/Insert/' + process.env.DRIPS_SOURCE_TOKEN;
+    this.url = 'https://api-v2.drips.com/Lead/Insert/' + process.env.DRIPS_SOURCE_TOKEN;
   }
 
   parse() {
